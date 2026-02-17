@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deylane Raquel ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a00ff, #ff4e8a);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.start-button {
+    background: white;
+    color: #ff4e8a;
+    padding: 18px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: 0.3s;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+#sim {
+    background: #00ff88;
+}
+
+#sim:hover {
+    transform: scale(1.1);
+}
+
+#nao {
+    background: red;
+    position: absolute;
+}
+
+img {
+    max-width: 80%;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+.fade {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TELA INICIAL -->
+<div id="tela1" class="screen">
+    <h1>Deylane Raquel 💖</h1>
+    <button class="start-button" onclick="iniciar()">
+        Toque aqui para começar nossa história que vamos eternizar 💕<br>
+        São poucas as fotos, mas tem muito significado para mim 🥹❤️
+    </button>
+</div>
+
+<!-- TELA 2 - FOTOS -->
+<div id="tela2" class="screen" style="display:none;">
+    <h2>Nossa história começou em 31/01/2026 às 20:55 💕</h2>
+    <img id="foto" class="fade">
+</div>
+
+<!-- TELA 3 - PERGUNTA FINAL -->
+<div id="tela3" class="screen" style="display:none;">
+    <h1>Deylane Raquel...</h1>
+    <h2>Depois de cada momento juntos...</h2>
+    <h1>Quer namorar comigo? ❤️</h1>
+    <button id="sim" onclick="aceitou()">SIM ❤️</button>
+    <button id="nao" onmouseover="fugir()">NÃO 😢</button>
+</div>
+
+<!-- MÚSICA -->
+<audio id="musica" preload="auto">
+    <source src="https://files.catbox.moe/pm32r7.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+var fotos = [
+"https://i.ibb.co/gMPQb7rg/Screenshot-20260207-132541-Roblox.png",
+"https://i.ibb.co/7tY12FGR/Screenshot-20260215-173216-Roblox.png",
+"https://i.ibb.co/vxvZHLLg/Screenshot-20260208-222809-Roblox.png",
+"https://i.ibb.co/ZRczt00K/1898395548-5741421764-1771289698091.png",
+"https://i.ibb.co/27Zccjx1/1898395548-5741421764-1771289686796.png",
+"https://i.ibb.co/ZzK2HNYZ/1898395548-5741421764-1770481462790.png"
+];
+
+var index = 0;
+
+function iniciar() {
+
+    var musica = document.getElementById("musica");
+
+    // toca a música no clique (agora funciona 100%)
+    musica.play().catch(function(error) {
+        console.log("Erro ao tocar:", error);
+    });
+
+    document.getElementById("tela1").style.display = "none";
+    document.getElementById("tela2").style.display = "flex";
+
+    mostrarFotos();
+}
+
+function mostrarFotos() {
+    if (index < fotos.length) {
+        var img = document.getElementById("foto");
+        img.src = fotos[index];
+        img.classList.remove("fade");
+        void img.offsetWidth;
+        img.classList.add("fade");
+        index++;
+        setTimeout(mostrarFotos, 3000);
+    } else {
+        document.getElementById("tela2").style.display = "none";
+        document.getElementById("tela3").style.display = "flex";
+    }
+}
+
+function aceitou() {
+    document.body.innerHTML = `
+    <div class="screen">
+        <h1>AAAAAA 😭💍</h1>
+        <h2>Agora é oficial!</h2>
+        <h2>Deylane Raquel é minha namorada 💖</h2>
+        <h2>Eu prometo cuidar de você todos os dias 🥹</h2>
+    </div>
+    `;
+}
+
+function fugir() {
+    var botao = document.getElementById("nao");
+    botao.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    botao.style.left = Math.random() * (window.innerWidth - 100) + "px";
+}
+
+</script>
+
+</body>
+</html>
